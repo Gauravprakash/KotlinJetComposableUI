@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "io.github.tscholze.cmpsample.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "io.github.tscholze.cmpsample.android"
-        minSdk = 31
-        targetSdk = 32
+        minSdk = 29
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -17,7 +17,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.0"
+        kotlinCompilerExtensionVersion = "1.4.1"
     }
     packagingOptions {
         resources {

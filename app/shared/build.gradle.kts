@@ -21,7 +21,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-
                 // Kotlinx
                 with(Dependencies.Kotlinx) {
                     implementation(coroutines)
@@ -46,6 +45,8 @@ kotlin {
                     implementation(foundation)
                     implementation(material)
                     implementation(runtime)
+                    @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                    implementation(components.resources)
                 }
             }
         }
@@ -102,7 +103,7 @@ android {
     namespace = "io.github.tscholze.cmpsample"
     compileSdk = 33
     defaultConfig {
-        minSdk = 31
+        minSdk = 29
         targetSdk = 33
     }
 

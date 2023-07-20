@@ -50,28 +50,28 @@ internal fun CMPScaffold(
 
     @Composable
     fun CMPAppBar() {
-        TopAppBar(
-            title = { Text(title) },
-            actions = {
-                Button(
-                    onClick = {
-                        uriHandler.openUri("https://github.com/tscholze/kotlin-kmm-compose-sample")
-                    },
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text("Visit me on GitHub")
-                        Icon(
-                            Icons.Rounded.Face,
-                            contentDescription = "Go to GitHub"
-                        )
-                    }
-
-                }
-            }
-        )
+//        TopAppBar(
+//            title = { Text(title) },
+//            actions = {
+//                Button(
+//                    onClick = {
+//                        uriHandler.openUri("https://github.com/tscholze/kotlin-kmm-compose-sample")
+//                    },
+//                ) {
+//                    Row(
+//                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+//                        verticalAlignment = Alignment.CenterVertically
+//                    ) {
+//                        Text("Visit me on GitHub")
+//                        Icon(
+//                            Icons.Rounded.Face,
+//                            contentDescription = "Go to GitHub"
+//                        )
+//                    }
+//
+//                }
+//            }
+//        )
     }
 
     @Composable
@@ -110,7 +110,6 @@ internal fun CMPScaffold(
             .background(MaterialTheme.colors.primary)
     ) {
         Scaffold(
-            topBar = { CMPAppBar() },
             bottomBar = { CMPBottomAppBar() },
             modifier = Modifier.padding(
                 start = SafeArea.current.value.calculateStartPadding(LayoutDirection.Ltr),

@@ -62,7 +62,7 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     PageLayout(AppScreens.RemoteData.title, router) {
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             // 1. Info block
-            Banner("The following posts are fetch from an url")
+            Banner()
 
             // 2. List of all items
             LazyColumn {

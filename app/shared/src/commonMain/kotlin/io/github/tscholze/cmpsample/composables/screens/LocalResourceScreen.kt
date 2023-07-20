@@ -55,7 +55,7 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             // 1. Info block
-            Banner("The following data was fetched from a local file.")
+            Banner()
 
             // 2. Search container
             SearchView(textState)
