@@ -41,6 +41,7 @@ internal fun OtherFeaturesScreen(router: Router<AppScreens>) {
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             // 1. Info block
+
             Banner()
 
             // 2. List of features

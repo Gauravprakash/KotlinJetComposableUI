@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.Banner
+import io.github.tscholze.cmpsample.composables.components.GetStarted
+import io.github.tscholze.cmpsample.composables.components.GetStartedTitles
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.LicensePlateLocation
@@ -54,34 +56,36 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            // 1. Info block
             Banner()
+            GetStarted(GetStartedTitles)
+            // 1. Info block
+           // Banner()
 
             // 2. Search container
-            SearchView(textState)
+           // SearchView(textState)
 
-            // 3. List of filtered license plate locations
-            LazyColumn(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(filterPlates(textState.value)) { row ->
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        // ID like "A"
-                        Text(row.id, style = MaterialTheme.typography.h3)
-
-                        // City "Augsburg"
-                        // State "Bayern"
-                        Column(
-                            horizontalAlignment = Alignment.End,
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
-                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
-                        }
-                    }
-                }
-            }
+//            // 3. List of filtered license plate locations
+//            LazyColumn(
+//                modifier = Modifier.padding(horizontal = 16.dp),
+//                verticalArrangement = Arrangement.spacedBy(12.dp)
+//            ) {
+//                items(filterPlates(textState.value)) { row ->
+//                    Row(verticalAlignment = Alignment.CenterVertically) {
+//                        // ID like "A"
+//                        Text(row.id, style = MaterialTheme.typography.h2)
+//
+//                        // City "Augsburg"
+//                        // State "Bayern"
+//                        Column(
+//                            horizontalAlignment = Alignment.End,
+//                            modifier = Modifier.fillMaxSize()
+//                        ) {
+//                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
+//                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 }
