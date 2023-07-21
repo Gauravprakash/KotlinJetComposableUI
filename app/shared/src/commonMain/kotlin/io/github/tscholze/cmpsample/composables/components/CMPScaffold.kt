@@ -10,6 +10,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -82,13 +83,16 @@ internal fun CMPScaffold(
                     icon = {
                         Icon(
                             screen.icon,
-                            contentDescription = screen.title
+                            contentDescription = screen.title,
+                            tint = Color.Blue
                         )
                     },
+                    modifier = Modifier.background(Color.White),
                     label = {
                         Text(
                             text = screen.title,
-                            fontSize = 10.sp
+                            fontSize = 12.sp,
+                            color = Color.Black
                         )
                     },
                     selected = title == screen.title,
@@ -97,6 +101,7 @@ internal fun CMPScaffold(
                             RouterContract.Inputs.GoToDestination(screen.matcher.routeFormat)
                         )
                     }
+
                 )
             }
         }
@@ -107,7 +112,7 @@ internal fun CMPScaffold(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colors.primary)
+            .background(Color.White)
     ) {
         Scaffold(
             bottomBar = { CMPBottomAppBar() },

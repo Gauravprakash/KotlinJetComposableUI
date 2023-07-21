@@ -24,16 +24,10 @@ import org.jetbrains.compose.resources.painterResource
  */
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-internal fun Banner() {
-    Box(
-        modifier = Modifier.fillMaxWidth()
-            .background(MaterialTheme.colors.secondary)
-    ) {
-        Image(
-            painterResource("hp_default.png"),contentDescription = null,
-            modifier = Modifier.fillMaxWidth().height(200.dp),
-            contentScale = ContentScale.FillWidth
-        )
-
-    }
+fun Banner() {
+    Image(
+        painterResource("hp_default.png"), contentDescription = null,
+        modifier = Modifier.fillMaxWidth().height(200.dp),
+        contentScale = ContentScale.FillWidth
+    )
 }

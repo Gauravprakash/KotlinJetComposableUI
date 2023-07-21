@@ -4,8 +4,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -20,6 +23,7 @@ import io.github.tscholze.cmpsample.model.BlogFeedItem
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.RemoteImage
 import io.github.tscholze.cmpsample.utils.makeHttpClient
+import io.ktor.client.HttpClient
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.launch
@@ -40,9 +44,6 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     val client = makeHttpClient()
     var posts by remember { mutableStateOf(emptyList<BlogFeedItem>()) }
 
-    // MARK: - Helper -
-
-    val uriHandler = LocalUriHandler.current
 
     // MARK: - LaunchedEffect -
 
@@ -60,48 +61,53 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     // MARK: - UI -
 
     PageLayout(AppScreens.RemoteData.title, router) {
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            // 1. Info block
+        HomePageLayout(posts, client)
+    }
+}
+
+@Composable
+fun HomePageLayout(posts: List<BlogFeedItem>, client: HttpClient) {
+    val uriHandler = LocalUriHandler.current
+    // 1. Info blockz
+    LazyColumn {
+        item {
             Banner()
-
-            // 2. List of all items
-            LazyColumn {
-                itemsIndexed(posts) { index, post ->
-                    Column {
-                        Column(
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
-                                .clickable {
-                                    uriHandler.openUri(post.url)
-                                }
-                        ) {
-
-                            // Cover image
-                            RemoteImage(
-                                client,
-                                post.coverImageUrl,
-                                modifier = Modifier.fillMaxWidth().aspectRatio(2f),
-                                contentDescription = "Article cover image"
-                            )
-
-                            // Text block
-                            Text(post.title, fontWeight = FontWeight.Medium)
-                            Text(
-                                post.created,
-                                style = MaterialTheme.typography.caption,
-                                fontStyle = FontStyle.Italic
-                            )
+        }
+        itemsIndexed(posts) { index, post ->
+            Column {
+                Column(
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        .clickable {
+                            uriHandler.openUri(post.url)
                         }
+                ) {
 
-                        // Show divider if current item is not the last one.
-                        if (index < posts.lastIndex) {
-                            Divider(
-                                color = MaterialTheme.colors.secondaryVariant,
-                                thickness = 0.5.dp
-                            )
-                        }
-                    }
+                    // Cover image
+                    RemoteImage(
+                        client,
+                        post.coverImageUrl,
+                        modifier = Modifier.fillMaxWidth().aspectRatio(2f),
+                        contentDescription = "Article cover image"
+                    )
+
+                    // Text block
+                    Text(post.title, fontWeight = FontWeight.Medium)
+                    Text(
+                        post.created,
+                        style = MaterialTheme.typography.caption,
+                        fontStyle = FontStyle.Italic
+                    )
+                }
+
+                // Show divider if current item is not the last one.
+                if (index < posts.lastIndex) {
+                    Divider(
+                        color = MaterialTheme.colors.secondaryVariant,
+                        thickness = 0.5.dp
+                    )
                 }
             }
         }
     }
+
 }

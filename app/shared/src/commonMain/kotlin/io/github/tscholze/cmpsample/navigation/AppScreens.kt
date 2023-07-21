@@ -2,16 +2,15 @@ package io.github.tscholze.cmpsample.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.copperleaf.ballast.navigation.routing.Route
 import com.copperleaf.ballast.navigation.routing.RouteAnnotation
 import com.copperleaf.ballast.navigation.routing.RouteMatcher
 
-/**
- * Based on https://copper-leaf.github.io/ballast/wiki/modules/ballast-navigation/
- */
 enum class AppScreens(
     val title: String,
     val icon: ImageVector,
@@ -21,9 +20,10 @@ enum class AppScreens(
 
     // MARK: - Screens -
 
-    LocalData("Local data", Icons.Rounded.Home, "/app/local-data"),
-    RemoteData("Remote data", Icons.Rounded.ThumbUp, "/app/remote-data"),
-    OtherFeatures("Other features", Icons.Rounded.ExitToApp, "/app/other-features");
+
+    RemoteData("Home", Icons.Rounded.Home, "/app/remote-data"),
+    LocalData("Shortlist", Icons.Rounded.Favorite, "/app/local-data"),
+    OtherFeatures("Profile", Icons.Rounded.Person, "/app/other-features");
 
     // MARK: - Matcher -
 
