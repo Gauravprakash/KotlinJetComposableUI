@@ -13,13 +13,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.Banner
+import io.github.tscholze.cmpsample.composables.components.GetInsightTools
 import io.github.tscholze.cmpsample.composables.components.GetStarted
 import io.github.tscholze.cmpsample.composables.components.GetStartedTitles
+import io.github.tscholze.cmpsample.composables.components.InsightToolItems
+import io.github.tscholze.cmpsample.composables.components.InsightsItem
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.LicensePlateLocation
 import io.github.tscholze.cmpsample.navigation.AppScreens
+import io.github.tscholze.cmpsample.utils.RemoteImage
 import io.github.tscholze.cmpsample.utils.ResourceReader
+import io.github.tscholze.cmpsample.utils.makeHttpClient
 
 /**
  * Sample screen to demonstrate the kmm approach of locally fetched resources.
@@ -35,6 +40,7 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
 
     val textState = remember { mutableStateOf("") }
     val allValues = parseData()
+    val client = makeHttpClient()
 
     // MARK: - Inner helper -
 
@@ -58,6 +64,8 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
         ) {
             Banner()
             GetStarted(GetStartedTitles)
+            GetInsightTools(InsightToolItems)
+
             // 1. Info block
            // Banner()
 
