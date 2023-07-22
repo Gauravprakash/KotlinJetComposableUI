@@ -26,7 +26,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun Banner() {
     Image(
-        painterResource("hp_default.png"), contentDescription = null,
+        painterResource("hp_default.webp"), contentDescription = null,
         modifier = Modifier.fillMaxWidth().height(200.dp),
         contentScale = ContentScale.FillWidth
     )

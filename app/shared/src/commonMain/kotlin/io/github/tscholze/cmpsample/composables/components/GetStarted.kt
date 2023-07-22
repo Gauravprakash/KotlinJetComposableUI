@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,34 +25,38 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import io.github.tscholze.cmpsample.model.ChipsMapper
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 val GetStartedTitles = listOf(
-    ChipsMapper(id = "HP_BUY", name = "Buy", icon = "explore_buy.png", preference = "S"),
-    ChipsMapper(id = "HP_RENT", name = "Rent", icon = "explore_rent.png", preference = "R"),
-    ChipsMapper(id = "HP_PL", name = "Plot / Land", icon = "explore_plots_lands.png", preference = "S"),
-    ChipsMapper(id = "HP_CW_LEASE", name = "Co-working\nSpaces", icon = "explore_coworking_space.png", preference = "L"),
-    ChipsMapper(id = "HP_COM_BUY", name = "Buy\nCommercial", icon = "explore_buy_commercial.png", preference = "S"),
-    ChipsMapper(id = "HP_LEASE", name = "Lease\nCommercial", icon = "explore_commercial_lease.png", preference = "L"),
-    ChipsMapper(id = "HP_INSIGHTS", name = "Insights", icon = "Insights.png", preference = "S"),
-    ChipsMapper(id = "HP_PG", name = "PG", icon = "explore_pg.png", preference = "S"),
-    ChipsMapper(id = "SELL_RENT_PROPERTY", name = "Post a property", icon = "explore_post_property.png", preference = "S")
+    ChipsMapper(id = "HP_BUY", name = "Buy", icon = "explore_buy.webp", preference = "S"),
+    ChipsMapper(id = "HP_RENT", name = "Rent", icon = "explore_rent.webp", preference = "R"),
+    ChipsMapper(id = "HP_PL", name = "Plot / Land", icon = "explore_plots_lands.webp", preference = "S"),
+    ChipsMapper(id = "HP_CW_LEASE", name = "Co-working\nSpaces", icon = "explore_coworking_space.webp", preference = "L"),
+    ChipsMapper(id = "HP_COM_BUY", name = "Buy\nCommercial", icon = "explore_buy_commercial.webp", preference = "S"),
+    ChipsMapper(id = "HP_LEASE", name = "Lease\nCommercial", icon = "explore_commercial_lease.webp", preference = "L"),
+    ChipsMapper(id = "HP_INSIGHTS", name = "Insights", icon = "Insights.webp", preference = "S"),
+    ChipsMapper(id = "HP_PG", name = "PG", icon = "explore_pg.webp", preference = "S"),
+    ChipsMapper(id = "SELL_RENT_PROPERTY", name = "Post a property", icon = "explore_post_property.webp", preference = "S")
 )
 @Composable
 fun GetStarted(getStartedTitles: List<ChipsMapper>) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier.padding(PaddingValues(vertical = 20.dp))
     ) {
         Text(
             "Get started with",
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp),
             color = Color(0xFF041533)
         )
         Text("Explore real estate options in top cities",
+            fontSize = 12.sp,
              modifier = Modifier.padding(horizontal = 16.dp),
              color = Color(0xFF8993A4)
             )

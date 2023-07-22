@@ -25,6 +25,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.github.tscholze.cmpsample.model.ChipsMapper
 import InsightsMapper
+import androidx.compose.foundation.background
+// import androidx.compose.foundation.layout.BoxScopeInstance.align
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonColors
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.contentColorFor
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 import io.github.tscholze.cmpsample.utils.RemoteImage
 import io.github.tscholze.cmpsample.utils.makeHttpClient
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -34,51 +47,95 @@ val baseurl = "https://static.99acres.com/universalapp/img"
 // Common module - shared code
 
 val InsightToolItems = listOf(
-    InsightsMapper(id = "1", name = "Price Trends", entityType = "PRT", imageUrl = "$baseurl/Price_Trends.png", heading = "Check Property Rates & Price Trends", subHeading = "in any city, locality or society", url = "", urlLabel = "Price Trends"),
-    InsightsMapper(id = "2", name = "Locality Insights", entityType = "LI", imageUrl = "$baseurl/Locality_Insights.png", heading = "Get to know different localities before you buy/rent...", subHeading = "Check Prices, lifestyle, reviews & more", url = "", urlLabel = "Locality Insights"),
-    InsightsMapper(id = "3", name = "Read Ratings & Reviews", entityType = "RNR", imageUrl = "$baseurl/Ratings_n_Reviews.png", heading = "What locals say about their locality / society?", subHeading = "Get to know from residents", url = "", urlLabel = "Read Ratings & Reviews"),
-    InsightsMapper(id = "4", name = "Transaction Prices", entityType = "RGR", imageUrl = "$baseurl/Registry_Records.png", heading = "Check actual transaction values of different properties.", subHeading = "in any locality / society before you buy", url = "", urlLabel = "Transaction Prices"),
-    InsightsMapper(id = "5", name = "My Property Insights", entityType = "PRP", imageUrl = "$baseurl/propIn.png", heading = "Check Insights about your Property", subHeading = "Track Prices | Analyse Supply-Demand", url = "", urlLabel = "My Property Insights"),
-    InsightsMapper(id = "6", name = "Read Latest News", entityType = "NWS", imageUrl = "$baseurl/news.png", heading = "Stay up-to-date with latest Real Estate News", subHeading = "in your city or across India", url = "", urlLabel = "Read Latest News"),
-    InsightsMapper(id = "7", name = "Check Articles", entityType = "ARTS", imageUrl = "$baseurl/article.png", heading = "Browse & Read handpicked Articles", subHeading = "to get answers for all your doubts", url = "", urlLabel = "Check Articles"),
-    InsightsMapper(id = "8", name = "Check Guides", entityType = "GDS", imageUrl = "$baseurl/guide.png", heading = "Buying or Renting for the first time? Start with Guides", subHeading = "to learn all about Real Estate", url = "", urlLabel = "Check Guides"),
-    InsightsMapper(id = "9", name = "Budget Calculator", entityType = "BDC", imageUrl = "$baseurl/Budget_Calculator.png", heading = "Check your Home buying budget", subHeading = "based on your savings & EMI", url = "", urlLabel = "Budget Calculator"),
-    InsightsMapper(id = "10", name = "EMI Calculator", entityType = "EMI", imageUrl = "$baseurl/EMI_Calculator.png", heading = "Plan your Home loan better with our EMI calculator", subHeading = "and plan your budget right...", url = "", urlLabel = "EMI Calculator"),
-    InsightsMapper(id = "11", name = "Home Loan Eligibility Calculator", entityType = "HLC", imageUrl = "$baseurl/img_014.png", heading = "Home Loan Eligibility Calculator", subHeading = "based on your borrowing capacity", url = "", urlLabel = "Check Now"),
-    InsightsMapper(id = "12", name = "Area Convertor", entityType = "ACT", imageUrl = "$baseurl/Area_Convertor.png", heading = "Check area in any unit —sq.ft to yards and more", subHeading = "Convert  area across 20+ Units", url = "", urlLabel = "Area Converter")
+    InsightsMapper(id = "1", name = "Price Trends", entityType = "PRT", imageUrl = "$baseurl/PriceTrend2Msite.png", heading = "Price Trends", subHeading = "Check property rates and prices", url = "", urlLabel = "Price Trends"),
+    InsightsMapper(id = "2", name = "Locality Insights", entityType = "LI", imageUrl = "$baseurl/LocalityInsights2Msite.png", heading = "Locality Insights", subHeading = "Know more about different localities", url = "", urlLabel = "Locality Insights"),
+    InsightsMapper(id = "3", name = "Read Ratings & Reviews", entityType = "RNR", imageUrl = "$baseurl/ReviewsRatings2Msite.png", heading = "Reviews & Ratings", subHeading = "Know what residents say", url = "", urlLabel = "Read Ratings & Reviews"),
+    InsightsMapper(id = "4", name = "Transaction Prices", entityType = "RGR", imageUrl = "$baseurl/TransactionPrices2Msite.png", heading = "Transaction Prices", subHeading = "Check property transaction values", url = "", urlLabel = "Transaction Prices"),
+    InsightsMapper(id = "5", name = "My Property", entityType = "PRP", imageUrl = "$baseurl/AboutMyProperty2Msite.png", heading = "Check Insights about your Property", subHeading = "Track prices & analyse market demands", url = "", urlLabel = "My Property"),
+    InsightsMapper(id = "6", name = "Read Latest News", entityType = "NWS", imageUrl = "$baseurl/ReadIcons2Msite.png", heading = "Read Latest News", subHeading = "Around real estate and allied industries", url = "", urlLabel = "Read Latest News"),
+    InsightsMapper(id = "7", name = "Check Articles", entityType = "ARTS", imageUrl = "$baseurl/GuidesDesktop.png", heading = "Check Articles", subHeading = "On trending topics and policy updates", url = "", urlLabel = "Check Articles"),
+    InsightsMapper(id = "8", name = "User Guides", entityType = "GDS", imageUrl = "$baseurl/NewsDesktop.png", heading = "User Guides", subHeading = "To help home buyers, tenants and sellers", url = "", urlLabel = "Check Guides"),
+    InsightsMapper(id = "9", name = "Budget Calculator", entityType = "BDC", imageUrl = "$baseurl/BudgetIcon2Msite.png", heading = "Budget Calculator", subHeading = "Check your affordability range for buying home", url = "", urlLabel = "Budget Calculator"),
+    InsightsMapper(id = "10", name = "EMI Calculator", entityType = "EMI", imageUrl = "$baseurl/EMICalculator2Msite.png", heading = "EMI Calculator", subHeading = "Calculate your home loan EMI", url = "", urlLabel = "EMI Calculator"),
+    InsightsMapper(id = "11", name = "Home Loan Eligibility Calculator", entityType = "HLC", imageUrl = "$baseurl/LoanEligibility2Msite.png", heading = "Loan Eligibility", subHeading = "See what you can borrow for your home", url = "", urlLabel = "Check Now"),
+    InsightsMapper(id = "12", name = "Area Convertor", entityType = "ACT", imageUrl = "$baseurl/AreaConverter2Msite.png", heading = "Area Converter", subHeading = "Convert one area into any other easily", url = "", urlLabel = "Area Converter")
 )
 val client = makeHttpClient()
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun GetInsightTools(insightToolItems: List<InsightsMapper>) {
     Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier.padding(PaddingValues(vertical = 20.dp)).background(color = Color(0xFFf0f9ff))
     ) {
-        Text(
-            "Insights & Tools",
-            style = MaterialTheme.typography.h6,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 2.dp),
-            color = Color(0xFF041533)
-        )
-        Text("Go from browsing to buying",
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = Color(0xFF8993A4)
-        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Row( Modifier
+            .fillMaxWidth()
+            .padding(8.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically){
+            Row(verticalAlignment = Alignment.CenterVertically ) {
+                Image(
+                    painterResource("batch_prediction.webp"),contentDescription = null)
+                    //, modifier = Modifier.padding(horizontal = 4.dp))
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ){
+                    Text(
+                        "Insights & Tools",
+                        style = MaterialTheme.typography.h5,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        color = Color(0xFF041533)
+                    )
+                    Text("Go from browsing to buying",
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(horizontal = 8.dp),
+                        color = Color(0xFF8993A4)
+                    )
+                }
+
+
+            }
+            // Button
+
+            Button(
+                onClick = { print("View All tapped") },
+                modifier = Modifier.padding(start = 8.dp),
+                colors = ButtonDefaults.textButtonColors(contentColor = Color(0xFF0078DB),
+                    backgroundColor = Color.Transparent
+
+                ),
+                elevation = ButtonDefaults.elevation(
+                    defaultElevation = 0.dp,
+                    pressedElevation = 0.dp,
+                    disabledElevation = 0.dp
+                ),
+            ) {
+                Text("View All", style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.SemiBold ))
+
+
+            }
+
+        }
+
+
+
         LazyRow() {
             items(insightToolItems) {
                 it
-                  InsightsItem(title = it.name, image = it.imageUrl)
+                  InsightsItem(title = it.heading, subTitle = it.subHeading, image = it.imageUrl)
                 // CardItem(title = it.name, image = it.icon)
             }
 
         }
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun InsightsItem(title: String, image:String) {
+fun InsightsItem(title: String, subTitle:String, image:String) {
     Card(
         modifier = Modifier
             .padding(16.dp)
@@ -95,12 +152,31 @@ fun InsightsItem(title: String, image:String) {
             RemoteImage(
                 client,
                 image,
-                modifier = Modifier.width(80.dp).aspectRatio(2f),
+                modifier = Modifier.width(24.dp).height(24.dp),
                 contentDescription = ""
             )
             // Image(painterResource(image),contentDescription = null)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = title, textAlign = TextAlign.Center, fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal)
+            Row(verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.Start ) {
+                Text(title,
+                    style = MaterialTheme.typography.body1,
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 14.sp,
+                    modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+                    color = Color(0xFF041533)
+                )
+                Icon(
+                    painterResource("arrow_right.webp"),contentDescription = null
+                    , modifier = Modifier.padding(horizontal = 4.dp))
+            }
+            Text(subTitle,
+                style = MaterialTheme.typography.subtitle1,
+                fontWeight = FontWeight.Normal,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(vertical = 2.dp),
+                color = Color(0xFF8993A4)
+            )
+
         }
 
     }
