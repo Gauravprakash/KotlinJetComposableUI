@@ -34,6 +34,7 @@ import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.contentColorFor
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
@@ -152,17 +153,22 @@ fun InsightsItem(title: String, subTitle:String, image:String) {
             RemoteImage(
                 client,
                 image,
-                modifier = Modifier.width(24.dp).height(24.dp),
+                modifier = Modifier.width(24.dp).height(24.dp).drawBehind {
+                    drawCircle(
+                        color = Color(0xFFf0f9ff),
+                        radius = this.size.maxDimension
+                    )
+                },
                 contentDescription = ""
             )
             // Image(painterResource(image),contentDescription = null)
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Row(verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.Start ) {
                 Text(title,
                     style = MaterialTheme.typography.body1,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(vertical = 10.dp, horizontal = 2.dp),
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 2.dp),
                     color = Color(0xFF041533)
                 )
                 Icon(
