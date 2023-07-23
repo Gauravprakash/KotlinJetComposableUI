@@ -2,6 +2,7 @@ package io.github.tscholze.cmpsample.composables.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Face
@@ -10,6 +11,8 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.LayoutDirection
@@ -77,22 +80,21 @@ internal fun CMPScaffold(
 
     @Composable
     fun CMPBottomAppBar() {
-        BottomAppBar {
+        BottomAppBar(backgroundColor = Color.White,
+                    modifier = Modifier.fillMaxWidth().shadow(25.dp)
+                        .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp, bottomEnd = 0.dp, bottomStart = 0.dp))) {
             AppScreens.values().forEach { screen ->
                 BottomNavigationItem(
                     icon = {
                         Icon(
                             screen.icon,
-                            contentDescription = screen.title,
-                            tint = Color.Blue
+                            contentDescription = screen.title
                         )
                     },
-                    modifier = Modifier.background(Color.White),
                     label = {
                         Text(
                             text = screen.title,
-                            fontSize = 12.sp,
-                            color = Color.Black
+                            fontSize = 12.sp
                         )
                     },
                     selected = title == screen.title,
@@ -100,7 +102,9 @@ internal fun CMPScaffold(
                         router.trySend(
                             RouterContract.Inputs.GoToDestination(screen.matcher.routeFormat)
                         )
-                    }
+                    },
+                    selectedContentColor =Color(0xFF0078DB),
+                    unselectedContentColor = Color(0xFF8993A4)
 
                 )
             }

@@ -21,8 +21,8 @@ enum class AppScreens(
     // MARK: - Screens -
 
 
-    RemoteData("Home", Icons.Rounded.Home, "/app/remote-data"),
-    LocalData("Shortlist", Icons.Rounded.Favorite, "/app/local-data"),
+    LocalData("Home", Icons.Rounded.Home, "/app/local-data"),
+    RemoteData("Shortlist", Icons.Rounded.Favorite, "/app/remote-data"),
     OtherFeatures("Profile", Icons.Rounded.Person, "/app/other-features");
 
     // MARK: - Matcher -

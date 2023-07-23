@@ -13,7 +13,7 @@ class RouterViewModel(
     viewModelCoroutineScope: CoroutineScope
 ) : BasicRouter<AppScreens>(
     config = BallastViewModelConfiguration.Builder()
-        .withRouter(RoutingTable.fromEnum(AppScreens.values()), AppScreens.RemoteData)
+        .withRouter(RoutingTable.fromEnum(AppScreens.values()), AppScreens.LocalData)
         .build(),
     eventHandler = eventHandler { },
     coroutineScope = viewModelCoroutineScope,

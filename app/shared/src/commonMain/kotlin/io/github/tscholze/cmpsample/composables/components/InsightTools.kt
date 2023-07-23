@@ -122,7 +122,7 @@ fun GetInsightTools(insightToolItems: List<InsightsMapper>) {
 
 
 
-        LazyRow() {
+        LazyRow(modifier = Modifier.padding(start = 10.dp, end = 10.dp)) {
             items(insightToolItems) {
                 it
                   InsightsItem(title = it.heading, subTitle = it.subHeading, image = it.imageUrl)
@@ -139,17 +139,15 @@ fun GetInsightTools(insightToolItems: List<InsightsMapper>) {
 fun InsightsItem(title: String, subTitle:String, image:String) {
     Card(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(PaddingValues(vertical = 16.dp, horizontal = 6.dp))
             .width(200.dp).height(200.dp),
-        elevation = 8.dp,
-        shape = RoundedCornerShape(size = 8.dp)
+        shape = RoundedCornerShape(size = 5.dp)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
         ){
-            // Cover image
             RemoteImage(
                 client,
                 image,
@@ -162,13 +160,12 @@ fun InsightsItem(title: String, subTitle:String, image:String) {
                 contentDescription = ""
             )
             // Image(painterResource(image),contentDescription = null)
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(verticalAlignment = Alignment.CenterVertically,horizontalArrangement = Arrangement.Start ) {
+//            Spacer(modifier = Modifier.height(8.dp))
+            Row(modifier = Modifier.padding(top = 25.dp, start = 6.dp), horizontalArrangement = Arrangement.Start) {
                 Text(title,
                     style = MaterialTheme.typography.body1,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 14.sp,
-                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 2.dp),
                     color = Color(0xFF041533)
                 )
                 Icon(
@@ -179,7 +176,7 @@ fun InsightsItem(title: String, subTitle:String, image:String) {
                 style = MaterialTheme.typography.subtitle1,
                 fontWeight = FontWeight.Normal,
                 fontSize = 12.sp,
-                modifier = Modifier.padding(vertical = 2.dp),
+                modifier = Modifier.padding(vertical = 2.dp, horizontal = 8.dp),
                 color = Color(0xFF8993A4)
             )
 

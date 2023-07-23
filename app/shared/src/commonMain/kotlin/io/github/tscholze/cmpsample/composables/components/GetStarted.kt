@@ -45,7 +45,7 @@ val GetStartedTitles = listOf(
 fun GetStarted(getStartedTitles: List<ChipsMapper>) {
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.padding(PaddingValues(vertical = 20.dp))
+        modifier = Modifier.padding(PaddingValues(vertical = 10.dp))
     ) {
         Text(
             "Get started with",
@@ -60,9 +60,8 @@ fun GetStarted(getStartedTitles: List<ChipsMapper>) {
              modifier = Modifier.padding(horizontal = 16.dp),
              color = Color(0xFF8993A4)
             )
-        LazyRow() {
+        LazyRow(modifier = Modifier.padding(PaddingValues(horizontal = 12.dp, vertical = 10.dp))) {
             items(getStartedTitles) {
-                it
                 CardItem(title = it.name, image = it.icon)
             }
 
@@ -74,11 +73,10 @@ fun GetStarted(getStartedTitles: List<ChipsMapper>) {
 @Composable
 fun CardItem(title: String, image:String) {
     Card(
-        modifier = Modifier
-            .padding(16.dp)
+        modifier = Modifier.padding(horizontal = 4.dp)
             .width(120.dp).height(120.dp),
-        elevation = 8.dp,
-        shape = RoundedCornerShape(size = 8.dp)
+        elevation = 4.dp,
+        shape = RoundedCornerShape(size = 10.dp)
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -88,7 +86,8 @@ fun CardItem(title: String, image:String) {
 
             Image(painterResource(image),contentDescription = null)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = title, textAlign = TextAlign.Center, fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal)
+            Text(text = title, textAlign = TextAlign.Center, fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal, fontSize = 13.sp)
         }
 
     }

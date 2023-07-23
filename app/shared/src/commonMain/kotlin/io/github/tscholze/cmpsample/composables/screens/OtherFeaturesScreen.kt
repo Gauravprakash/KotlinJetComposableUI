@@ -36,7 +36,7 @@ internal fun OtherFeaturesScreen(router: Router<AppScreens>) {
 
     // MARK: - UI -
 
-    PageLayout(AppScreens.LocalData.title, router) {
+    PageLayout(AppScreens.OtherFeatures.title, router) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {

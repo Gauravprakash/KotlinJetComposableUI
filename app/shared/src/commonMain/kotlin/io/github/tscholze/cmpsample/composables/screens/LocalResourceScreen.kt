@@ -1,19 +1,17 @@
 package io.github.tscholze.cmpsample.composables.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.copperleaf.ballast.navigation.vm.Router
 import io.github.tscholze.cmpsample.composables.components.Banner
-import io.github.tscholze.cmpsample.composables.components.BuyingHome
+import io.github.tscholze.cmpsample.composables.components.BigSectionCards
 import io.github.tscholze.cmpsample.composables.components.GetInsightTools
 import io.github.tscholze.cmpsample.composables.components.GetStarted
 import io.github.tscholze.cmpsample.composables.components.GetStartedTitles
@@ -21,6 +19,7 @@ import io.github.tscholze.cmpsample.composables.components.InsightToolItems
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
 import io.github.tscholze.cmpsample.model.LicensePlateLocation
+import io.github.tscholze.cmpsample.model.SectionMapper
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.ResourceReader
 
@@ -63,42 +62,106 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
                Banner()
            }
            item {
+                SearchView(textState)
+           }
+           item {
                GetStarted(GetStartedTitles)
            }
            item {
                GetInsightTools(InsightToolItems)
            }
            item {
-               BuyingHome()
+               BigSectionCards(
+                   SectionMapper(
+                       "Buying a home",
+                       "Apartments, land, builder floors, villas and more",
+                       "Buy.webp",
+                       "Explore all home buying options",
+                       "Over 5200 properties and 450 projects",
+                       "S",
+                       "R"
+                   )
+               )
            }
-            // 1. Info block
-           // Banner()
-
-            // 2. Search container
-           // SearchView(textState)
-
-//            // 3. List of filtered license plate locations
-//            LazyColumn(
-//                modifier = Modifier.padding(horizontal = 16.dp),
-//                verticalArrangement = Arrangement.spacedBy(12.dp)
-//            ) {
-//                items(filterPlates(textState.value)) { row ->
-//                    Row(verticalAlignment = Alignment.CenterVertically) {
-//                        // ID like "A"
-//                        Text(row.id, style = MaterialTheme.typography.h2)
-//
-//                        // City "Augsburg"
-//                        // State "Bayern"
-//                        Column(
-//                            horizontalAlignment = Alignment.End,
-//                            modifier = Modifier.fillMaxSize()
-//                        ) {
-//                            Text(row.city, modifier = Modifier.wrapContentWidth(Alignment.End))
-//                            Text(row.state, modifier = Modifier.wrapContentWidth(Alignment.End))
-//                        }
-//                    }
-//                }
-//            }
+           // add Recommended project here
+           item {
+               BigSectionCards(
+                   SectionMapper(
+                       "Renting a home",
+                       "Apartments, land, builder floors, villas and more",
+                       "rentingahome.webp",
+                       "Explore all home renting options",
+                       "Over 1400 properties | 750+ owner listed",
+                       "S",
+                       "R_R"
+                   )
+               )
+           }
+           item {
+               BigSectionCards(
+                   SectionMapper(
+                       "Buy Plots/Land",
+                       "Explore Residential and Commercial Plots/Land",
+                       "explore_plots_and_lands.webp",
+                       "Explore all Plots/Land Options",
+                       "1300+ Residential properties | 210+ Commercial Properties",
+                       "S",
+                       "R"
+                   )
+               )
+           }
+           item {
+               BigSectionCards(
+                   SectionMapper(
+                       "Selling/ Renting your property",
+                       "Close the deal faster with 99acres",
+                       "rentingselling.webp",
+                       "Post property for FREE",
+                       "Option to get assistance & free verification",
+                       "",
+                       ""
+                   )
+               )
+           }
+           item {
+               BigSectionCards(
+                   SectionMapper(
+                       "PG and co-living",
+                       "Organised, owner and broker listed PGs",
+                       "pgandcoliving.webp",
+                       "Explore all PG and co-living options",
+                       "Over 70 properties | 60+ owners listed",
+                       "P",
+                       "R"
+                   )
+               )
+           }
+           item {
+               BigSectionCards(
+                   SectionMapper(
+                       "Buying a commercial property",
+                       "Shops, offices, land, factories, warehouses and more",
+                       "buyingcommercial.webp",
+                       "Explore all commercial buying options",
+                       "Over 590 properties and 50 projects",
+                       "S",
+                       "C"
+                   )
+               )
+           }
+           item {
+               BigSectionCards(
+                   SectionMapper(
+                       "Leasing a commercial property",
+                       "Shops, offices, land, factories, warehouses and more",
+                       "leasecommercial.webp",
+                       "Explore all commercial leasing options",
+                       "Over 670 properties | 450+ owners listed",
+                       "L",
+                       "C"
+                   )
+               )
+           }
         }
     }
 }

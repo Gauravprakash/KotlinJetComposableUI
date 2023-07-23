@@ -5,6 +5,7 @@ data class SectionMapper(
     val subtitle:String,
     val image:String,
     val cta:String,
+    val ctaText:String,
     val preference:String,
     val resCom:String
 )
