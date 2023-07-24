@@ -1,5 +1,6 @@
 package io.github.tscholze.cmpsample.composables.screens
 
+import ApiService
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,6 +23,9 @@ import io.github.tscholze.cmpsample.model.LicensePlateLocation
 import io.github.tscholze.cmpsample.model.SectionMapper
 import io.github.tscholze.cmpsample.navigation.AppScreens
 import io.github.tscholze.cmpsample.utils.ResourceReader
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 /**
  * Sample screen to demonstrate the kmm approach of locally fetched resources.
@@ -37,6 +41,7 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
 
     val textState = remember { mutableStateOf("") }
     val allValues = parseData()
+
 
     // MARK: - Inner helper -
 
@@ -55,9 +60,14 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
     // MARK: - UI -
 
     PageLayout(AppScreens.LocalData.title, router) {
+
        LazyColumn(
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
+
+           GlobalScope.async {
+               ApiService.makeRequest()
+           }
            item {
                Banner()
            }

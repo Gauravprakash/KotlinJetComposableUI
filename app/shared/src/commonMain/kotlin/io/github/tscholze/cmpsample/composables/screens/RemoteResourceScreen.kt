@@ -50,7 +50,8 @@ internal fun RemoteResourceScreen(router: Router<AppScreens>) {
     LaunchedEffect(true) {
         // Fetch posts on launch
         scope.launch {
-            posts = client
+            posts =
+                client
                 .get("https://tscholze.github.io/blog/posts.json")
                 .body<List<BlogFeedItem>>()
                 .sortedBy { it.created }
