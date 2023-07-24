@@ -18,5 +18,3 @@ class BlogFeedItem(
     val url: String,
     val coverImageUrl: String
 )
-
-
