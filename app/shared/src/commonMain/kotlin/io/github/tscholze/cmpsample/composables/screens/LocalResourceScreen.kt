@@ -15,6 +15,7 @@ import io.github.tscholze.cmpsample.composables.components.BigSectionCards
 import io.github.tscholze.cmpsample.composables.components.GetInsightTools
 import io.github.tscholze.cmpsample.composables.components.GetStarted
 import io.github.tscholze.cmpsample.composables.components.GetStartedTitles
+import io.github.tscholze.cmpsample.composables.components.HandPickedProject
 import io.github.tscholze.cmpsample.composables.components.InsightToolItems
 import io.github.tscholze.cmpsample.composables.components.SearchView
 import io.github.tscholze.cmpsample.composables.layouts.PageLayout
@@ -82,6 +83,9 @@ internal fun LocalResourceScreen(router: Router<AppScreens>) {
                        "R"
                    )
                )
+           }
+           item {
+               HandPickedProject()
            }
            // add Recommended project here
            item {
